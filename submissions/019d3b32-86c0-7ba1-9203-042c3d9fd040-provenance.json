@@ -1,0 +1,22 @@
+{
+  "image_digests": {
+    "/agent": "ghcr.io/mikhail-osintsev/purple-tau2-agent@sha256:32236b71356a1143ab55581ddd62c82a0ebf94e7e2fd4570f93b3d3e5e023752",
+    "/gateway": "ghcr.io/rdi-foundation/agentbeats-gateway@sha256:30f49abcc6f0b14a2498e645cd6f1f7d0e57316f82224ba18f4cad76e08e02a7",
+    "/green": "ghcr.io/rdi-foundation/tau2-agentbeats@sha256:c5d731aefb3d0feaf9258931257c2839eaed8446f1d03bfa7e6823a15b0b9f7a"
+  },
+  "manifest_digests": {
+    "/": "sha256:r/MxVwnSWDOxI3Z3DzdvzDb8r+U6bmAJQ+aVjoyNQV4=",
+    "/agent": "sha256:O1c0P5BLm/0k05ZCZpXgtke6KQ+fML/wxixN57F4+sE=",
+    "/gateway": "sha256:YWNLWt2Oy0QNqtALcnrq3tH63EZKGzOG1c1xI1EywTw=",
+    "/green": "sha256:wcKEZDltSU9wI5tT4awEHLcs+4B+hOuIJlTXXmSyAdU="
+  },
+  "timestamp": "2026-03-29T20:11:25Z",
+  "github_actions": {
+    "run_url": "https://github.com/RDI-Foundation/tau2-agentbeats-leaderboard/actions/runs/23717887580",
+    "ref": "refs/pull/82/merge",
+    "sha": "1e3cc0736875bca9c73a81640794b620fce5c6dd",
+    "repository_url": "https://github.com/RDI-Foundation/tau2-agentbeats-leaderboard",
+    "workflow_ref": "RDI-Foundation/tau2-agentbeats-leaderboard/.github/workflows/quick-submit.yml@refs/pull/82/merge",
+    "workflow_sha": "1e3cc0736875bca9c73a81640794b620fce5c6dd"
+  }
+}
