@@ -1,0 +1,99 @@
+{
+  "manifest_version": "0.1.0",
+  "config_schema": {
+    "type": "object",
+    "properties": {
+      "agent_agent_llm": {
+        "type": "string",
+        "default": "gpt-4o"
+      },
+      "agent_bothub_api_key": {
+        "type": "string",
+        "secret": true
+      },
+      "agent_bothub_base_url": {
+        "type": "string",
+        "default": "https://bothub.chat/api/v2/openai/v1"
+      },
+      "green_deepseek_api_key": {
+        "type": "string",
+        "secret": true,
+        "default": ""
+      },
+      "green_gemini_api_key": {
+        "type": "string",
+        "secret": true,
+        "default": ""
+      },
+      "green_openai_api_key": {
+        "type": "string",
+        "secret": true,
+        "default": ""
+      }
+    },
+    "required": [
+      "agent_bothub_api_key"
+    ],
+    "additionalProperties": false
+  },
+  "components": {
+    "gateway": {
+      "manifest": "https://raw.githubusercontent.com/RDI-Foundation/agentbeats-gateway/refs/tags/v0.1/amber-manifest.json5",
+      "config": {
+        "assessment_config": {
+          "domain": "airline",
+          "user_llm": "gemini/gemini-2.0-flash",
+          "max_steps": 200
+        },
+        "participant_roles": {
+          "green": "green",
+          "purple1": "agent"
+        },
+        "callback_urls": {
+          "green": "${bindings.green-proxy.url}"
+        }
+      }
+    },
+    "green": {
+      "manifest": "https://raw.githubusercontent.com/RDI-Foundation/tau2-agentbeats/refs/heads/main/amber/amber-manifest-green.json5",
+      "config": {
+        "deepseek_api_key": "${config.green_deepseek_api_key}",
+        "gemini_api_key": "${config.green_gemini_api_key}",
+        "openai_api_key": "${config.green_openai_api_key}"
+      }
+    },
+    "agent": {
+      "manifest": "https://raw.githubusercontent.com/neilarphy/tau2-purple-agent/main/amber-manifest.json5",
+      "config": {
+        "agent_llm": "${config.agent_agent_llm}",
+        "bothub_api_key": "${config.agent_bothub_api_key}",
+        "bothub_base_url": "${config.agent_bothub_base_url}"
+      }
+    }
+  },
+  "bindings": [
+    {
+      "to": "#gateway.green",
+      "from": "#green.a2a"
+    },
+    {
+      "to": "#gateway.purple1",
+      "from": "#agent.a2a"
+    },
+    {
+      "to": "#green.proxy",
+      "from": "#gateway.proxy",
+      "weak": true,
+      "name": "green-proxy"
+    }
+  ],
+  "exports": {
+    "results": "#gateway.results"
+  },
+  "metadata": {
+    "agentbeats_ids": {
+      "green": "019cf80f-8938-79c0-a221-4c7eadd43e7e",
+      "agent": "019d4fd8-3332-7eb3-8c3f-5acfbf7c3396"
+    }
+  }
+}
