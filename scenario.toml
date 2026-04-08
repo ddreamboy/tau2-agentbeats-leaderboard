@@ -4,7 +4,7 @@ agentbeats_id = "019cf80f-8938-79c0-a221-4c7eadd43e7e"
 env = { LOG_LEVEL = "INFO", OPENAI_API_KEY = "${LLM_API_KEY}", OPENAI_BASE_URL = "https://routerai.ru/api/v1", GEMINI_API_KEY = "none", DEEPSEEK_API_KEY = "none" }
 
 [[participants]]
-agentbeats_id = "019d68b1-8cd7-7f71-8564-34be9d436b59"
+image = "ghcr.io/ddreamboy/tau2-purple-agent:latest"
 name = "agent"
 env = { LOG_LEVEL = "INFO", LLM_API_KEY = "${LLM_API_KEY}", LLM_API_URL = "https://routerai.ru/api/v1", LLM_API_BASE_MODEL = "google/gemini-2.5-flash-lite" }
 
