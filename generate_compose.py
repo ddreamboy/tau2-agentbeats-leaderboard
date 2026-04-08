@@ -118,6 +118,7 @@ endpoint = "http://green-agent:{green_port}"
 def resolve_image(agent: dict, name: str) -> None:
     KNOWN_IMAGES = {
         "019d68b1-8cd7-7f71-8564-34be9d436b59": "ghcr.io/ddreamboy/tau2-purple-agent:latest",
+        "019cf80f-8938-79c0-a221-4c7eadd43e7e": "ghcr.io/rdi-foundation/tau2-agentbeats:latest",
     }
 
     has_image = "image" in agent
