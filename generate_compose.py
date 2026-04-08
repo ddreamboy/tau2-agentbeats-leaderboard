@@ -116,7 +116,10 @@ endpoint = "http://green-agent:{green_port}"
 
 
 def resolve_image(agent: dict, name: str) -> None:
-    """Resolve docker image for an agent, either from 'image' field or agentbeats API."""
+    KNOWN_IMAGES = {
+        "019d68b1-8cd7-7f71-8564-34be9d436b59": "ghcr.io/ddreamboy/tau2-purple-agent:latest",
+    }
+
     has_image = "image" in agent
     has_id = "agentbeats_id" in agent
 
@@ -129,9 +132,14 @@ def resolve_image(agent: dict, name: str) -> None:
             sys.exit(1)
         print(f"Using {name} image: {agent['image']}")
     elif has_id:
-        info = fetch_agent_info(agent["agentbeats_id"])
-        agent["image"] = info["docker_image"]
-        print(f"Resolved {name} image: {agent['image']}")
+        agent_id = agent["agentbeats_id"]
+        if agent_id in KNOWN_IMAGES:
+            agent["image"] = KNOWN_IMAGES[agent_id]
+            print(f"Using known image for {name}: {agent['image']}")
+        else:
+            info = fetch_agent_info(agent_id)
+            agent["image"] = info["docker_image"]
+            print(f"Resolved {name} image: {agent['image']}")
     else:
         print(f"Error: {name} must have either 'image' or 'agentbeats_id' field")
         sys.exit(1)
