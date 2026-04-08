@@ -1,14 +1,12 @@
 [green_agent]
-# agentbeats_id = ""
 image = "ghcr.io/rdi-foundation/tau2-agentbeats:latest"
-env = { LOG_LEVEL = "INFO", OPENAI_API_KEY = "${OPENAI_API_KEY}", GEMINI_API_KEY = "${GEMINI_API_KEY}", DEEPSEEK_API_KEY = "${DEEPSEEK_API_KEY}" }
+env = { LOG_LEVEL = "INFO", OPENAI_API_KEY = "${LLM_API_KEY}", OPENAI_BASE_URL = "https://routerai.ru/api/v1", GEMINI_API_KEY = "none", DEEPSEEK_API_KEY = "none" }
 
 [[participants]]
-# agentbeats_id = ""
-image = "ghcr.io/rdi-foundation/tau2-purple-agentbeats:latest"
+image = "ghcr.io/ddreamboy/tau2-purple-agent:latest"
 name = "agent"
-env = { LOG_LEVEL = "INFO", AGENT_LLM = "openai/gpt-4o-mini", OPENAI_API_KEY = "${OPENAI_API_KEY}", GEMINI_API_KEY = "${GEMINI_API_KEY}", DEEPSEEK_API_KEY = "${DEEPSEEK_API_KEY}" }
+env = { LOG_LEVEL = "INFO", LLM_API_KEY = "${LLM_API_KEY}", LLM_API_URL = "https://routerai.ru/api/v1", LLM_API_BASE_MODEL = "google/gemini-2.5-flash-lite" }
 
 [config]
 domain = "airline"
-user_llm = "openai/gpt-4o-mini"
+user_llm = "openai/google/gemini-2.5-flash-lite"
